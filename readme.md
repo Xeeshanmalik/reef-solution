@@ -3,7 +3,7 @@
 ***Configuration***
 
 1. Install conda https://conda.io/docs/user-guide/install/index.html
-2. Execute conda env create at the project root folder only for once.
+2. Execute "conda env create" at the project root folder only for once.
 
 ***Execute The Code***
 
@@ -15,7 +15,7 @@
     
     ``./run_project.sh``
 
-4. After the code runs you will see the output in output/output.csv
+4. After the code runs you will see the output in output/output.html
 
 
 *Great Success!*

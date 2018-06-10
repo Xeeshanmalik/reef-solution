@@ -1,0 +1,13 @@
+name: reef
+dependencies:
+- python=2.7
+- pip
+- pip:
+  - ConfigParser
+  - pytest
+  - simplejson
+  - requests
+  - pandas
+  - future
+  - arghelper
+  - toolz==0.9.0

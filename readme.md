@@ -1,11 +1,11 @@
-**Reef Solution**
+# Reef Solution #
 
 ***Configuration***
 
 1. Install conda https://conda.io/docs/user-guide/install/index.html
 2. Execute conda env create at the project root folder only for once.
 
-***Running The Code***
+***Execute The Code***
 
 1. After installing conda "source activate reef"
 2. Change the config.ini with your keys.

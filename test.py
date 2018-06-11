@@ -1,5 +1,5 @@
 import unittest
-from main import convert_to_html
+from util.utility import Util
 import pandas as pd
 import numpy as np
 
@@ -13,6 +13,7 @@ class MyTest(unittest.TestCase):
         np.fill_diagonal(src_df.values, time)
         for column in src_df:
             src_df[column] = src_df[column].str.encode('utf-8')
-        df = convert_to_html(name, project, time, "output/test.html")
+        df = Util.convert_to_html(name, project, time, "output/test.html")
+        print(df)
         self.assertItemsEqual(df, src_df)
 

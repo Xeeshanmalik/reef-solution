@@ -1,35 +1,6 @@
 import argparse
-import pandas as pd
-import numpy as np
 from ConfigParser import SafeConfigParser
-import requests
-import simplejson as json
-import codecs
-
-
-def write_html(output, df):
-
-    # Format the frame output to html
-
-    with codecs.open(output, 'w', encoding='utf8') as file_handle:
-        file_handle.write('<html>')
-        file_handle.write('<body align=center>')
-        file_handle.write(df)
-        file_handle.write('</body>')
-        file_handle.write('</html>')
-
-
-def convert_to_html(name, project, time, output):
-
-    # Combine all dimensions in tabular form
-
-    df = pd.DataFrame(columns=name, index=project)
-    df = df.fillna('')
-    np.fill_diagonal(df.values,time)
-    for column in df:
-        df[column] = df[column].str.encode('utf-8')
-    write_html(output, df.to_html())
-    return df
+from util.utility import Util
 
 
 if __name__ == '__main__':
@@ -50,12 +21,9 @@ if __name__ == '__main__':
     # Get Project and User Data using API Call
 
     headers={'App-Token': APP_TOKEN, 'Auth-Token': AUTH_KEY}
-    project_response = requests.get(PROJECT_URL, headers=headers)
-    project_response = project_response.content
-    project_data = json.loads(project_response)["projects"]
-    user_response = requests.get(USER_URL, headers=headers)
-    user_response = user_response.content
-    user_data = json.loads(user_response)["users"]
+
+    project_data = Util.api_call(PROJECT_URL, headers, "projects")
+    user_data = Util.api_call(USER_URL, headers,"users")
 
     # Loading Required output to seperate Lists
 
@@ -70,6 +38,6 @@ if __name__ == '__main__':
 
     # Saving the desired output in HTML Format
 
-    output = convert_to_html(name, project, time, args.output)
+    output = Util.convert_to_html(name, project, time, args.output)
 
     print("Output Saved in HTML at", args.output)
